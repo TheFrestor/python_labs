@@ -3,11 +3,11 @@
 ### ЗАДАНИЕ 1
 ![alt text](src/images/ex01.png)
 ### ЗАДАНИЕ 2
-![alt text](src/images/ex02.png)
+![alt text](src/images/ex021.png)
 ### ЗАДАНИЕ 3
-![alt text](src/images/ex03.png)
+![alt text](src/images/ex031.png)
 ### ЗАДАНИЕ 4
-![alt text](src/images/ex04.png)
+![alt text](src/images/ex041.png)
 ### ЗАДАНИЕ 5
 ![alt text](src/images/ex05.png)
 ### ЗАДАНИЕ 6
