@@ -1,4 +1,4 @@
-n = input()
+n = input("in:")
 
 for i in range(len(n)):
     if n[i].isupper():
@@ -12,4 +12,4 @@ for i in range(index1 +1 ,len(n)):
 ras = index2 +1 - index1
 
 slovo = "".join(n[i] for i in range(index1,len(n),ras))
-print(slovo)
+print(f"out: {slovo}")
