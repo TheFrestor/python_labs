@@ -15,7 +15,7 @@ print(max_min(eval(input())))
 ![alt text](images/1.1.2.png)
 ![alt text](images/1.1.3.png)
 ![alt text](images/1.1.4.png)
-![alt text](images/1.1.5.png)
+![alt text](.images/1.1.5.png)
 
 ### Функция unique_sorted
 Здесь я вернул отсортированные элементы списка **nums** без повторений.
