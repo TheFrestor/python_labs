@@ -19,3 +19,4 @@ def flatten(mat: list[list | tuple]) -> list:
     return res
 
 print(flatten(eval(input())))
+
