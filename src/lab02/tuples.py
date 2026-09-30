@@ -1,6 +1,8 @@
 def format_record(rec: tuple[str, str, float]) -> str:
+    if type(rec) is not tuple:
+        raise TypeError("Входные данные должны быть кортежем")
     if len(rec)!= 3 :
-        raise ValueError ("некорректный ввод")
+        raise ValueError ("Некорректный ввод")
     if not rec[0].strip():
         raise ValueError("ФИО не может быть пустым")
 

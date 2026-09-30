@@ -7,8 +7,15 @@
 def max_min(nums: list[float | int]) -> tuple[float | int, float | int]:
     if len(nums) == 0:
         raise ValueError
-    return min(nums), max(nums)
-
+    else: 
+        max_res = 0
+        min_res = 9*10**10
+        for i in nums:
+            if i > max_res:
+                max_res = i
+            if i < min_res:
+                min_res = i
+    return (min_res, max_res)
 print(max_min(eval(input())))
 ```
 ![alt text](images/1.1.1.png)
@@ -116,6 +123,9 @@ print(col_sums(eval(input())))
 
 ```python
 def format_record(rec: tuple[str, str, float]) -> str:
+    if type(rec) is not tuple:
+        raise TypeError("Входные данные должны быть кортежем")
+
     if len(rec)!= 3 :
         raise ValueError ("некорректный ввод")
 
@@ -150,3 +160,4 @@ print(format_record(rec))
 ![alt text](images/3.2.2.png)
 ![alt text](images/3.2.3.png)
 ![alt text](images/3.2.4.png)
+![alt text](images/3.2.5.png)
