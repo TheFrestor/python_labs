@@ -29,7 +29,16 @@ print(max_min(eval(input())))
 
 ```python
 def unique_sorted(nums: list[float | int]) -> list[float | int]:
-    return sorted(set(nums))
+    if len(nums) == 0: return []
+    res = []
+    for i in nums: 
+        if i not in res:
+            res.append(i)
+    for i in range(len(res)):
+        for j in range(len(res)-1-i):
+            if res[j] > res[j+1]:
+                res[j], res[j+1] = res[j+1], res[j]
+    return res
 
 print(unique_sorted(eval(input())))
 ```
