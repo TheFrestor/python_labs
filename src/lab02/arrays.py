@@ -18,8 +18,12 @@ def unique_sorted(nums: list[float | int]) -> list[float | int]:
     for i in nums: 
         if i not in res:
             res.append(i)
-    res1 = []
-    for i 
+    for i in range(len(res)):
+        for j in range(len(res)-1-i):
+            if res[j] > res[j+1]:
+                res[j], res[j+1] = res[j+1], res[j]
+    return res
+
 
 
 #print(unique_sorted(eval(input())))
