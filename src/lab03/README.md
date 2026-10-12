@@ -56,7 +56,7 @@ def top_n(freq: dict[str, int], n: int = 5) -> list[tuple[str, int]]:
 
 ```python
 import sys
-from src.lib.func import normalize, tokenize, count_freq, top_n
+from src.lib.text import normalize, tokenize, count_freq, top_n
 
 text = sys.stdin.read()
 
