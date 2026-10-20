@@ -25,9 +25,11 @@ def read_text(path: str | Path, encoding: str = "utf-8") -> str:
 
 ### Функция write_csv
 ```python
-im
+import csv
+from pathlib import Path
+
 def ensure_parent_dir(path: str | Path) -> None:
-    """Создать родительские директории для path, если их ещё нет."""
+    """Создает родительские директории для path, если их ещё нет."""
     Path(path).parent.mkdir(parents=True, exist_ok=True) 
     
 def write_csv(rows: list[tuple | list], path: str | Path, header: tuple[str, ...] | None = None) -> None:
@@ -60,17 +62,24 @@ def write_csv(rows: list[tuple | list], path: str | Path, header: tuple[str, ...
 `write_csv` проверяет, что во всех строках одинаковое количество значений, затем создаёт папки для файла и записывает данные в CSV через запятую. Если передан заголовок, он записывается первой строкой.
 
 ![alt text](../../images/lab04/1.4.png)
-![alt text](../../images/lab04/1.2.png)
+![alt text](../../images/lab04/1.5.png)
 
 ## Задание B
 
 ```python 
-def main():
-    text = read_text("src/data/lab04/input.txt")
+from pathlib import Path
+from src.lib.text import normalize, tokenize, count_freq, top_n
+from src.lab04.io_txt_csv import read_text, write_csv
 
-    if not text:
+
+def main():
+    input_path = Path("src/data/lab04/input.txt")
+
+    if not input_path.exists():
+        print(f"Ошибка: файл не найден: {input_path}")
         return
 
+    text = read_text(input_path)
     text = normalize(text)
     tokens = tokenize(text)
     freq = count_freq(tokens)
@@ -84,10 +93,30 @@ def main():
     print(f"Всего слов: {len(tokens)}")
     print(f"Уникальных слов: {len(freq)}")
     print("Топ-5:")
-    for i in top_words:
-        print(f"{i[0]}: {i[1]}")
+
+    for word, count in top_words:
+        print(f"{word}: {count}")
 
 
 if __name__ == "__main__":
     main()
+```
+Скрипт читает текст из файла `src/data/lab04/input.txt`. Затем приводит текст к единому виду, разбивает его на слова и считает, сколько раз встречается каждое слово. Результаты сортируются по частоте: сначала идут самые частые слова, а при одинаковом количестве — слова по алфавиту. Таблица со словами и их количеством записывается в `data/lab04/report.csv`. В терминале программа выводит общее количество слов, число уникальных слов и список из пяти самых частых слов.
+
+![alt text](../../images/lab04/2.3.png)
+![alt text](../../images/lab04/2.6.png)
+
+### Обработка краевых ситуаций
+- Пустой входной файл: программа выводит нулевую статистику и записывает в data/lab04/report.csv только заголовок word,count.
+- Отсутствие входного файла: если src/data/lab04/input.txt не найден, программа выводит сообщение об ошибке и завершает работу без создания отчёта.
+- Кодировка: файл читается в UTF-8. Параметр --encoding не реализован. Если файл не удаётся прочитать, read_text выводит сообщение и возвращает пустую строку; программа затем создаёт CSV только с заголовком.
+- Строки CSV разной длины: функция write_csv вызывает ValueError, если строки имеют разное количество значений. В этом отчёте каждая строка содержит слово и его частоту.
+- Большие файлы: весь текст считывается в память одной строкой. Для очень больших файлов чтение нужно было бы выполнять частями.
+
+### text_report.py
+Скрипт задания B сохранён в файле src/lab04/text_report.py. После запуска он выводит статистику в терминал и создаёт файл data/lab04/report.csv. Результат работы показан на скриншотах ниже.
+
+Запускал с помощью:
+```python
+python3 -m src.lab04.text_report
 ```
