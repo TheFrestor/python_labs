@@ -62,10 +62,6 @@ json_to_csv(
     "data/lab05/out/people_from_json.csv",
 )
 ```
-#### Запуск из корня проекта
-```bash
-python -m src.lab05.json_csv
-```
 ![alt text](../../images/lab05/1.png)
 ### Функция csv_to_json
 ```python
@@ -202,3 +198,10 @@ open data/lab05/out/people.xlsx
 - `people_from_csv.json` — результат CSV → JSON;
 - `people.xlsx` — результат CSV → XLSX.
 
+## Обработка ошибок
+Функции преобразования явно сообщают об ошибках:
+- FileNotFoundError — входной файл не найден;
+- ValueError — расширение входного или выходного файла не соответствует ожидаемому формату;
+- ValueError — JSON пустой, некорректный или содержит неподдерживаемую структуру;
+- ValueError — элементы JSON-списка не являются словарями;
+- ValueError — в CSV отсутствует заголовок или строки данных.
